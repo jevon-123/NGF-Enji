@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NGF Group - Data-to-Customer Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-600-normal.woff2') format('woff2');
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-700-normal.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Ecosystem Accents - Radial Gradients */
+        .glow-hera {
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+        }
+
+        .glow-netcore {
+            background: radial-gradient(circle at center, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+        }
+
+        .glow-hema {
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+        }
+
+        .glow-konvergence {
+            background: radial-gradient(circle at center, rgba(13, 148, 136, 0.15) 0%, transparent 70%);
+        }
+
+        /* Timeline specific */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: theme('colors.border-subtle');
+            z-index: 0;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-line::before {
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                width: 100%;
+                height: 2px;
+            }
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffdad6",
+                        "border-subtle": "#E2E8F0",
+                        "netcore-orange": "#F97316",
+                        "surface-container-high": "#e6e8ea",
+                        "inverse-primary": "#ffb3ac",
+                        "outline-variant": "#e4beba",
+                        "primary-container": "#d32f2f",
+                        "secondary-container": "#dae2fd",
+                        "text-muted": "#64748B",
+                        "on-primary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-variant": "#e0e3e5",
+                        "primary-fixed-dim": "#ffb3ac",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-primary-container": "#fff2f0",
+                        "secondary-fixed": "#dae2fd",
+                        "error-container": "#ffdad6",
+                        "background": "#ffffff", /* Force clean light mode */
+                        "primary": "#af101a",
+                        "on-tertiary-fixed-variant": "#004d65",
+                        "outline": "#8f6f6c",
+                        "surface-tint": "#ba1a20",
+                        "tertiary-container": "#00799c",
+                        "on-secondary-container": "#5c647a",
+                        "konvergence-teal": "#0D9488",
+                        "hema-purple": "#8B5CF6",
+                        "surface-dim": "#d8dadc",
+                        "tertiary-fixed": "#bee9ff",
+                        "hera-blue": "#3B82F6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#eceef0",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "deep-crimson": "#D32F2F",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-bright": "#f7f9fb",
+                        "text-main": "#1E293B",
+                        "on-tertiary-fixed": "#001f2a",
+                        "inverse-surface": "#2d3133",
+                        "secondary": "#565e74",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#930010",
+                        "on-tertiary-container": "#e9f7ff",
+                        "on-surface-variant": "#5b403d",
+                        "surface-container-low": "#f8fafc", /* Light gray for subtle bento */
+                        "on-error": "#ffffff",
+                        "tertiary": "#005f7b",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#191c1e",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-primary-fixed": "#410003",
+                        "tertiary-fixed-dim": "#7bd1f8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "bento-gap": "16px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "section-padding-mobile": "64px",
+                        "section-padding": "120px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Geist"],
+                        "display-xl-mobile": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "stats-number": ["Geist"],
+                        "label-caps": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "display-xl-mobile": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["30px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "stats-number": ["56px", { "lineHeight": "1.0", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-background text-text-main font-body-md antialiased overflow-x-hidden">
+    <!-- TopNavBar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-md border-b border-border-subtle dark:border-outline-variant shadow-sm dark:shadow-none transition-all duration-200">
+        <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+            <div
+                class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">
+                NGF Group
+            </div>
+            <!-- Desktop Nav -->
+            <ul class="hidden md:flex space-x-8">
+                <li><a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary pb-1 transition-colors"
+                        href="#ecosystem">Ecosystem</a></li>
+                <li><a class="text-text-muted dark:text-surface-variant hover:text-text-main dark:hover:text-on-surface transition-colors"
+                        href="#timeline">Timeline</a></li>
+                <li><a class="text-text-muted dark:text-surface-variant hover:text-text-main dark:hover:text-on-surface transition-colors"
+                        href="#capabilities">Capabilities</a></li>
+                <li><a class="text-text-muted dark:text-surface-variant hover:text-text-main dark:hover:text-on-surface transition-colors"
+                        href="#case-studies">Case Studies</a></li>
+            </ul>
+            <a class="hidden md:inline-flex items-center justify-center bg-deep-crimson text-on-primary font-body-md font-bold px-6 py-2 rounded-DEFAULT hover:opacity-80 transition-opacity duration-300 active:scale-95"
+                href="#contact">
+                Contact Us
+            </a>
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-text-main">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </nav>
+    <!-- HERO SECTION -->
+    <section
+        class="relative pt-[160px] pb-section-padding-mobile md:pb-section-padding px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-12">
+        <div class="w-full md:w-3/5 z-10">
+            <h1
+                class="font-display-xl-mobile text-display-xl-mobile md:font-display-xl md:text-display-xl text-text-main mb-6">
+                Twenty-five years of <br />
+                <span class="text-deep-crimson">Data-to-Customer.</span>
+            </h1>
+            <p class="font-body-lg text-body-lg text-text-muted mb-10 max-w-2xl">
+                We bridge the gap between raw market data and tangible customer impact. Our interconnected ecosystem of
+                AI, MarTech, and CX solutions turns information into authoritative action.
+            </p>
+            <a class="inline-flex items-center justify-center bg-deep-crimson text-on-primary font-body-lg px-8 py-4 rounded-DEFAULT hover:opacity-90 transition-opacity duration-300 shadow-sm active:scale-95 group"
+                href="#ecosystem">
+                Explore Our Ecosystem
+                <span
+                    class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </a>
+        </div>
+        <div
+            class="w-full md:w-2/5 relative h-[400px] bg-surface-container-low border border-border-subtle rounded-xl overflow-hidden shadow-sm flex items-center justify-center glow-hera">
+            <!-- Placeholder for futuristic data flow graphic -->
+            <div
+                class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMSIgZmlsbD0iIzY0NzQ4QiIvPjwvc3ZnPg==')]">
+            </div>
+            <img alt="Data Flow"
+                class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-50 grayscale contrast-125"
+                data-alt="A clean, minimalist high-key abstract visualization of a data stream flowing through a geometric, bento-box grid structure. The aesthetic is bright light mode, primarily stark whites and soft grays, highlighted with precise accents of deep crimson red and tech blue. Soft, diffused lighting creates an institutional, premium corporate feel, symbolizing organized, intelligent AI ecosystems."
+                src="https://lh3.googleusercontent.com/aida/AP1WRLtx6v_kT-Mp4KYNrj0XOMW9UkReWVr8C51it3mY5bsEhvC4M1I0wjyxeBso7AvJr5No9zIGifGCqI6Pn0jpXW0VrE2ramYWmFMva6FtD2Gnbpq5pEFt_iuycZrO6oMq7KEy5fhbjGWMgSh9cP7DqIC0KpSOjXusUvYYL_7USZB4SbWwV3Aq9k9e-774Y6wUenlQOxx0w8DvaihFY65gsQVduvhukazWRWdvPWXFFKXNmGyfvtefD2qTdD39" />
+            <div
+                class="relative z-10 p-6 bg-white/90 backdrop-blur-sm border border-border-subtle rounded-lg shadow-sm">
+                <span class="font-stats-number text-stats-number text-deep-crimson block leading-none">25+</span>
+                <span class="font-label-caps text-label-caps text-text-main tracking-widest uppercase">Years of
+                    Evolution</span>
+            </div>
+        </div>
+    </section>
+    <!-- METRICS BANNER -->
+    <section class="w-full bg-surface-container-low border-y border-border-subtle py-8">
+        <div
+            class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-border-subtle">
+            <div class="pt-4 md:pt-0">
+                <span class="font-stats-number text-stats-number text-deep-crimson block mb-2">100+</span>
+                <span class="font-label-caps text-label-caps text-text-muted uppercase tracking-widest">Enterprise
+                    Clients</span>
+            </div>
+            <div class="pt-4 md:pt-0">
+                <span class="font-stats-number text-stats-number text-deep-crimson block mb-2">10+</span>
+                <span class="font-label-caps text-label-caps text-text-muted uppercase tracking-widest">AI
+                    Projects</span>
+            </div>
+            <div class="pt-4 md:pt-0">
+                <span class="font-stats-number text-stats-number text-deep-crimson block mb-2">6</span>
+                <span class="font-label-caps text-label-caps text-text-muted uppercase tracking-widest">Specialist
+                    SBUs</span>
+            </div>
+        </div>
+    </section>
+    <!-- TIMELINE -->
+    <section class="py-section-padding-mobile md:py-section-padding px-gutter max-w-container-max mx-auto"
+        id="timeline">
+        <div class="text-center mb-16">
+            <h2
+                class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-text-main mb-4">
+                25+ Years Building Indonesia's Data-to-Customer Ecosystem
+            </h2>
+            <p class="font-body-md text-body-md text-text-muted max-w-2xl mx-auto">From pioneer research to full-stack
+                AI integration.</p>
+        </div>
+        <div class="relative timeline-line pt-8 md:pt-20">
+            <div class="flex flex-col md:flex-row justify-between relative z-10 gap-12 md:gap-4">
+                <!-- Phase 1 -->
+                <div class="relative flex flex-col items-center md:w-1/5 group">
+                    <div
+                        class="w-4 h-4 rounded-full border-2 border-deep-crimson bg-background mb-4 group-hover:bg-deep-crimson transition-colors z-10 shadow-[0_0_0_4px_theme('colors.background')]">
+                    </div>
+                    <div
+                        class="text-center bg-surface-container-low border border-border-subtle p-4 rounded-lg w-full group-hover:shadow-sm group-hover:border-deep-crimson transition-all">
+                        <h3 class="font-headline-md text-[20px] font-bold text-text-main mb-2">Origins</h3>
+                        <p class="font-body-md text-sm text-text-muted">The foundation of structured data collection.
+                        </p>
+                    </div>
+                </div>
+                <!-- Phase 2 -->
+                <div class="relative flex flex-col items-center md:w-1/5 group">
+                    <div
+                        class="w-4 h-4 rounded-full border-2 border-deep-crimson bg-background mb-4 group-hover:bg-deep-crimson transition-colors z-10 shadow-[0_0_0_4px_theme('colors.background')]">
+                    </div>
+                    <div
+                        class="text-center bg-surface-container-low border border-border-subtle p-4 rounded-lg w-full group-hover:shadow-sm group-hover:border-deep-crimson transition-all">
+                        <h3 class="font-headline-md text-[20px] font-bold text-text-main mb-2">Frontier Research</h3>
+                        <p class="font-body-md text-sm text-text-muted">Establishing market intelligence authority.</p>
+                    </div>
+                </div>
+                <!-- Phase 3 -->
+                <div class="relative flex flex-col items-center md:w-1/5 group">
+                    <div
+                        class="w-4 h-4 rounded-full border-2 border-deep-crimson bg-background mb-4 group-hover:bg-deep-crimson transition-colors z-10 shadow-[0_0_0_4px_theme('colors.background')]">
+                    </div>
+                    <div
+                        class="text-center bg-surface-container-low border border-border-subtle p-4 rounded-lg w-full group-hover:shadow-sm group-hover:border-deep-crimson transition-all">
+                        <h3 class="font-headline-md text-[20px] font-bold text-text-main mb-2">Digital Era</h3>
+                        <p class="font-body-md text-sm text-text-muted">Transition to digital analytics &amp; platforms.
+                        </p>
+                    </div>
+                </div>
+                <!-- Phase 4 -->
+                <div class="relative flex flex-col items-center md:w-1/5 group">
+                    <div
+                        class="w-4 h-4 rounded-full border-2 border-deep-crimson bg-background mb-4 group-hover:bg-deep-crimson transition-colors z-10 shadow-[0_0_0_4px_theme('colors.background')]">
+                    </div>
+                    <div
+                        class="text-center bg-surface-container-low border border-border-subtle p-4 rounded-lg w-full group-hover:shadow-sm group-hover:border-deep-crimson transition-all">
+                        <h3 class="font-headline-md text-[20px] font-bold text-text-main mb-2">AI Wave</h3>
+                        <p class="font-body-md text-sm text-text-muted">Predictive models and intelligent segmentation.
+                        </p>
+                    </div>
+                </div>
+                <!-- Phase 5 -->
+                <div class="relative flex flex-col items-center md:w-1/5 group">
+                    <div
+                        class="w-4 h-4 rounded-full border-2 border-deep-crimson bg-deep-crimson mb-4 z-10 shadow-[0_0_0_4px_theme('colors.background')]">
+                    </div>
+                    <div
+                        class="text-center bg-surface-container-low border border-deep-crimson p-4 rounded-lg w-full shadow-[0_10px_30px_rgba(211,47,47,0.05)]">
+                        <h3 class="font-headline-md text-[20px] font-bold text-deep-crimson mb-2">Today</h3>
+                        <p class="font-body-md text-sm text-text-main">Continuous CX Engine &amp; Orchestration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <footer
+        class="w-full py-section-padding-mobile md:py-section-padding bg-surface-container-low dark:bg-inverse-surface border-t border-border-subtle dark:border-outline-variant">
+        <div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto gap-8">
+            <div class="text-center md:text-left">
+                <div class="font-headline-md text-headline-md font-bold text-text-main dark:text-on-surface mb-2">
+                    NGF Group
+                </div>
+                <div class="font-body-md text-body-md text-text-muted dark:text-surface-variant">
+                    © 2026 NGF Group. Driving Indonesian AI Ecosystem Excellence.
+                </div>
+            </div>
+            <ul class="flex flex-wrap justify-center gap-6">
+                <li><a class="font-body-md text-body-md text-text-muted dark:text-surface-variant hover:text-primary transition-colors duration-200"
+                        href="#">Privacy Policy</a></li>
+                <li><a class="font-body-md text-body-md text-text-muted dark:text-surface-variant hover:text-primary transition-colors duration-200"
+                        href="#">Terms of Service</a></li>
+                <li><a class="font-body-md text-body-md text-text-muted dark:text-surface-variant hover:text-primary transition-colors duration-200"
+                        href="#">LinkedIn</a></li>
+                <li><a class="font-body-md text-body-md text-text-muted dark:text-surface-variant hover:text-primary transition-colors duration-200"
+                        href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script
+        src="https://heracx.s3.ap-southeast-3.amazonaws.com/widget.min.js?token=U2FsdGVkX18me2-MXMLvstQ2t4DgKiics0tFUUTFlyzM3skqsJ_1cn4Hjf7PPgu8cg7ZiVqKxyCWRCqrVgQQdbOs-xO70UJFWtNN-fSLHXGhLYmmgdXoGQvjy6U9LVLlsBSBo4QEmiHGl5Lr6GpV_g"></script>
+
+    <!-- Embed code with API URL -->
+    <script
+        src="https://heracx.s3.ap-southeast-3.amazonaws.com/widget.min.js?token=U2FsdGVkX18me2-MXMLvstQ2t4DgKiics0tFUUTFlyzM3skqsJ_1cn4Hjf7PPgu8cg7ZiVqKxyCWRCqrVgQQdbOs-xO70UJFWtNN-fSLHXGhLYmmgdXoGQvjy6U9LVLlsBSBo4QEmiHGl5Lr6GpV_g"></script>
+
+</body>
+
+</html>
