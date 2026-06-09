@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NGF Group - Next Gen Frontier</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #af101a;
+            --deep-crimson: #D32F2F;
+            --surface-low: #f8fafc;
+            --border-subtle: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .font-geist {
+            font-family: 'Geist', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--deep-crimson);
+            border-radius: 4px;
+        }
+
+        /* Ecosystem Accents */
+        .glow-hera {
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+        }
+
+        .glow-netcore {
+            background: radial-gradient(circle at center, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+        }
+
+        .glow-hema {
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+        }
+
+        .glow-konvergence {
+            background: radial-gradient(circle at center, rgba(13, 148, 136, 0.1) 0%, transparent 70%);
+        }
+
+        /* Timeline Connector */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-subtle);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-line::before {
+                left: 0;
+                right: 0;
+                top: 20px;
+                bottom: auto;
+                width: 100%;
+                height: 2px;
+            }
+        }
+
+        /* Bento Grid Hover */
+        .bento-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+            border-bottom: 2px solid var(--deep-crimson);
+        }
+
+        /* Toggles */
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .details-content.open {
+            max-height: 1000px;
+        }
+
+        /* Dark Mode Placeholder */
+        .dark {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .dark .bg-white {
+            background-color: #1e293b;
+        }
+
+        .dark .text-text-muted {
+            color: #94a3b8;
+        }
+
+        .dark .border-border-subtle {
+            border-color: #334155;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#af101a',
+                        'deep-crimson': '#D32F2F',
+                        'surface-low': '#f8fafc',
+                        'border-subtle': '#E2E8F0',
+                        'text-main': '#1E293B',
+                        'text-muted': '#64748B',
+                    },
+                    spacing: {
+                        'container-max': '1280px',
+                        'section-padding': '120px',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-white text-text-main antialiased overflow-x-hidden">
+
+    <!-- Header / Nav -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-border-subtle">
+        <div class="max-w-container-max mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <img src="Picture1.png" alt="NGF Logo" class="h-12 w-auto object-contain rounded-sm">
+                <div class="hidden md:block text-xs uppercase tracking-widest font-semibold text-text-muted">Next Gen
+                    Frontier</div>
+            </div>
+            <ul class="hidden lg:flex space-x-8 font-medium text-sm">
+                <li><a href="#timeline" class="hover:text-deep-crimson transition-colors">Journey</a></li>
+                <li><a href="#ecosystem" class="hover:text-deep-crimson transition-colors">Ecosystem</a></li>
+                <li><a href="#capabilities" class="hover:text-deep-crimson transition-colors">Capabilities</a></li>
+                <li><a href="#case-studies" class="hover:text-deep-crimson transition-colors">Case Studies</a></li>
+            </ul>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleDarkMode()" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                    <span class="material-symbols-outlined" id="dark-mode-icon">light_mode</span>
+                </button>
+                <a href="#contact"
+                    class="hidden md:block bg-deep-crimson text-white px-6 py-2 rounded-md font-bold text-sm hover:opacity-90 transition-all active:scale-95">Connect
+                    with Our Experts</a>
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-border-subtle p-6 space-y-4">
+            <a href="#timeline" class="block py-2">Our Journey</a>
+            <a href="#ecosystem" class="block py-2">Ecosystem</a>
+            <a href="#capabilities" class="block py-2">Capabilities</a>
+            <a href="#case-studies" class="block py-2">Case Studies</a>
+            <a href="#contact" class="block bg-deep-crimson text-white p-3 rounded text-center font-bold">Connect</a>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section class="pt-40 pb-24 px-6 max-w-container-max mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+            <div
+                class="inline-block px-3 py-1 rounded bg-red-50 text-deep-crimson text-xs font-bold font-geist tracking-widest uppercase mb-6">
+                The CX-first ecosystem your customers feel</div>
+            <h1 class="text-5xl md:text-7xl font-bold font-geist leading-tight mb-6">
+                Twenty-five years of <br />
+                <span class="text-deep-crimson underline decoration-red-200 underline-offset-8">Data-to-Customer.</span>
+            </h1>
+            <p class="text-xl text-text-muted mb-10 max-w-xl leading-relaxed">
+                An Indonesian AI ecosystem that turns market data into customer impact—through research, martech, and
+                AI-native CX, end to end.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#ecosystem"
+                    class="bg-deep-crimson text-white px-8 py-4 rounded-md font-bold text-lg text-center hover:opacity-90 transition-all shadow-lg shadow-red-200 active:scale-95 flex items-center justify-center gap-2">
+                    Explore Our Ecosystem
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+        <div class="relative">
+            <div
+                class="aspect-square bg-surface-low rounded-3xl border border-border-subtle overflow-hidden glow-hera flex items-center justify-center p-8">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
+                    alt="Data Visualization"
+                    class="rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
+                <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-border-subtle">
+                    <div class="text-4xl font-bold text-deep-crimson font-geist">25+</div>
+                    <div class="text-xs font-bold uppercase tracking-tighter text-text-muted">Years of Evolution</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Metrics Banner -->
+    <section class="bg-surface-low border-y border-border-subtle py-12 mb-24">
+        <div class="max-w-container-max mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
+            <div>
+                <div class="text-5xl font-bold text-deep-crimson font-geist mb-2">100+</div>
+                <div class="text-sm font-bold uppercase tracking-widest text-text-muted">Enterprise Clients</div>
+            </div>
+            <div>
+                <div class="text-5xl font-bold text-deep-crimson font-geist mb-2">10+</div>
+                <div class="text-sm font-bold uppercase tracking-widest text-text-muted">AI Projects</div>
+            </div>
+            <div>
+                <div class="text-5xl font-bold text-deep-crimson font-geist mb-2">6</div>
+                <div class="text-sm font-bold uppercase tracking-widest text-text-muted">Specialist SBUs</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Corporate Timeline -->
+    <section id="timeline" class="py-24 px-6 max-w-container-max mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold font-geist mb-4">25+ Years Building Indonesia's Data-to-Customer Ecosystem
+            </h2>
+            <p class="text-text-muted max-w-2xl mx-auto">From a research workshop to an end-to-end customer-experience
+                ecosystem—the milestones.</p>
+        </div>
+        <div class="relative timeline-line pt-12">
+            <div class="grid md:grid-cols-5 gap-8">
+                <!-- Milestone 1 -->
+                <div class="relative group">
+                    <div class="hidden md:flex absolute top-4 left-0 w-full justify-center">
+                        <div class="w-4 h-4 rounded-full border-4 border-white bg-deep-crimson shadow-sm z-10"></div>
+                    </div>
+                    <div
+                        class="bg-surface-low border border-border-subtle p-6 rounded-xl group-hover:border-deep-crimson transition-colors">
+                        <div class="text-xs font-bold text-deep-crimson mb-2 uppercase tracking-widest">Origins</div>
+                        <h3 class="font-bold mb-3">No Products Yet, Just An Observation</h3>
+                        <p class="text-sm text-text-muted leading-relaxed">Two founders noticed what others missed—that
+                            very few Indonesian companies were truly data-driven.</p>
+                    </div>
+                </div>
+                <!-- Milestone 2 -->
+                <div class="relative group">
+                    <div class="hidden md:flex absolute top-4 left-0 w-full justify-center">
+                        <div
+                            class="w-4 h-4 rounded-full border-4 border-white bg-gray-200 group-hover:bg-deep-crimson shadow-sm z-10">
+                        </div>
+                    </div>
+                    <div
+                        class="bg-surface-low border border-border-subtle p-6 rounded-xl group-hover:border-deep-crimson transition-colors">
+                        <div class="text-xs font-bold text-text-muted mb-2 uppercase tracking-widest">Phase 1</div>
+                        <h3 class="font-bold mb-3">Frontier Research</h3>
+                        <p class="text-sm text-text-muted leading-relaxed">Forty batches of workshops trained CEOs to
+                            research and use data well.</p>
+                    </div>
+                </div>
+                <!-- Milestone 3 -->
+                <div class="relative group">
+                    <div class="hidden md:flex absolute top-4 left-0 w-full justify-center">
+                        <div
+                            class="w-4 h-4 rounded-full border-4 border-white bg-gray-200 group-hover:bg-deep-crimson shadow-sm z-10">
+                        </div>
+                    </div>
+                    <div
+                        class="bg-surface-low border border-border-subtle p-6 rounded-xl group-hover:border-deep-crimson transition-colors">
+                        <div class="text-xs font-bold text-text-muted mb-2 uppercase tracking-widest">Phase 2</div>
+                        <h3 class="font-bold mb-3">Digital Era</h3>
+                        <p class="text-sm text-text-muted leading-relaxed">Insight wired into execution. Three martech
+                            solutions emerged to turn insight into action.</p>
+                    </div>
+                </div>
+                <!-- Milestone 4 -->
+                <div class="relative group">
+                    <div class="hidden md:flex absolute top-4 left-0 w-full justify-center">
+                        <div
+                            class="w-4 h-4 rounded-full border-4 border-white bg-gray-200 group-hover:bg-deep-crimson shadow-sm z-10">
+                        </div>
+                    </div>
+                    <div
+                        class="bg-surface-low border border-border-subtle p-6 rounded-xl group-hover:border-deep-crimson transition-colors">
+                        <div class="text-xs font-bold text-text-muted mb-2 uppercase tracking-widest">Phase 3</div>
+                        <h3 class="font-bold mb-3">AI Wave</h3>
+                        <p class="text-sm text-text-muted leading-relaxed">AI blended with domain expertise for customer
+                            engagement and personalization at scale.</p>
+                    </div>
+                </div>
+                <!-- Milestone 5 -->
+                <div class="relative group">
+                    <div class="hidden md:flex absolute top-4 left-0 w-full justify-center">
+                        <div class="w-4 h-4 rounded-full border-4 border-white bg-deep-crimson shadow-sm z-10"></div>
+                    </div>
+                    <div class="bg-surface-low border border-deep-crimson p-6 rounded-xl shadow-lg shadow-red-50">
+                        <div class="text-xs font-bold text-deep-crimson mb-2 uppercase tracking-widest">Today</div>
+                        <h3 class="font-bold mb-3">One End-to-End Ecosystem</h3>
+                        <p class="text-sm text-text-muted leading-relaxed">Market data flows into data-to-customer
+                            execution. NGF guides the entire journey.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. The NGF AI Ecosystem -->
+    <section id="ecosystem" class="py-24 px-6 bg-surface-low border-y border-border-subtle overflow-hidden">
+        <div class="max-w-container-max mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold font-geist mb-4">One Continuous CX Engine</h2>
+                <p class="text-text-muted max-w-3xl mx-auto">Six SBUs orchestrated as one continuous loop:
+                    <strong>Engage, Resolve, and Measure.</strong>
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- SBU 1 -->
+                <div class="bento-card bg-white border border-border-subtle p-8 rounded-2xl glow-hera relative">
+                    <div class="w-10 h-1 rounded-full bg-blue-500 absolute top-0 left-8"></div>
+                    <h3 class="text-2xl font-bold font-geist mb-4">HERA</h3>
+                    <p class="text-text-muted mb-6">Agentic AI customer service — menuntaskan permintaan end-to-end.</p>
+                    <div class="text-xs font-bold text-blue-600 uppercase tracking-widest">Human Touch, High Tech</div>
+                </div>
+                <!-- SBU 2 -->
+                <div class="bento-card bg-white border border-border-subtle p-8 rounded-2xl glow-netcore relative">
+                    <div class="w-10 h-1 rounded-full bg-orange-500 absolute top-0 left-8"></div>
+                    <h3 class="text-2xl font-bold font-geist mb-4">Netcore</h3>
+                    <p class="text-text-muted mb-6">CDP & omnichannel engagement — data terpadu, journey personal.</p>
+                    <div class="text-xs font-bold text-orange-600 uppercase tracking-widest">Data-Driven Engagement
+                    </div>
+                </div>
+                <!-- SBU 3 -->
+                <div class="bento-card bg-white border border-border-subtle p-8 rounded-2xl glow-hema relative">
+                    <div class="w-10 h-1 rounded-full bg-purple-500 absolute top-0 left-8"></div>
+                    <h3 class="text-2xl font-bold font-geist mb-4">HEMA</h3>
+                    <p class="text-text-muted mb-6">Contact-center QA & insight — 100% percakapan ter-skor.</p>
+                    <div class="text-xs font-bold text-purple-600 uppercase tracking-widest">Quality Assurance AI</div>
+                </div>
+                <!-- SBU 4 -->
+                <div class="bento-card bg-white border border-border-subtle p-8 rounded-2xl glow-konvergence relative">
+                    <div class="w-10 h-1 rounded-full bg-teal-500 absolute top-0 left-8"></div>
+                    <h3 class="text-2xl font-bold font-geist mb-4">konvergence</h3>
+                    <p class="text-text-muted mb-6">Systems integration — terhubung ke CRM, channel, & core systems.</p>
+                    <div class="text-xs font-bold text-teal-600 uppercase tracking-widest">Seamless Integration</div>
+                </div>
+                <!-- SBU 5 -->
+                <div class="bento-card bg-white border border-border-subtle p-8 rounded-2xl relative">
+                    <div class="w-10 h-1 rounded-full bg-gray-500 absolute top-0 left-8"></div>
+                    <h3 class="text-2xl font-bold font-geist mb-4">ICH</h3>
+                    <p class="text-text-muted mb-6">Industry delivery — domain expertise & muscle implementasi.</p>
+                    <div class="text-xs font-bold text-gray-600 uppercase tracking-widest">Domain Expertise</div>
+                </div>
+                <!-- SBU 6 -->
+                <div class="bento-card bg-white border border-border-subtle p-8 rounded-2xl relative">
+                    <div class="w-10 h-1 rounded-full bg-red-500 absolute top-0 left-8"></div>
+                    <h3 class="text-2xl font-bold font-geist mb-4">Top</h3>
+                    <p class="text-text-muted mb-6">Brand & GTM design — experience & communication craft.</p>
+                    <div class="text-xs font-bold text-red-600 uppercase tracking-widest">Experience Craft</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Core Technical Capabilities -->
+    <section id="capabilities" class="py-24 px-6 max-w-container-max mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl font-bold font-geist mb-6">Make Sense of Your Data</h2>
+                <p class="text-lg text-text-muted mb-8">Deep data optimization powered by Frontier Technology & Netcore
+                    Customer Data Platform (CDP)</p>
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div class="flex gap-4">
+                        <span class="material-symbols-outlined text-deep-crimson">id_card</span>
+                        <div>
+                            <h4 class="font-bold mb-1">Identity Resolution</h4>
+                            <p class="text-sm text-text-muted">Link online and offline data for a single source of
+                                truth.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="material-symbols-outlined text-deep-crimson">query_stats</span>
+                        <div>
+                            <h4 class="font-bold mb-1">Customer Profiling</h4>
+                            <p class="text-sm text-text-muted">Identify high-value and underserved segments.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="material-symbols-outlined text-deep-crimson">psychology</span>
+                        <div>
+                            <h4 class="font-bold mb-1">Predictive Models</h4>
+                            <p class="text-sm text-text-muted">Estimate churn and repurchase likelihood.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="material-symbols-outlined text-deep-crimson">savings</span>
+                        <div>
+                            <h4 class="font-bold mb-1">Cost Optimization</h4>
+                            <p class="text-sm text-text-muted">Exclude previous buyers to save ad costs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-surface-low p-1 rounded-3xl border border-border-subtle shadow-inner">
+                <div class="bg-white p-12 rounded-[22px] border border-border-subtle">
+                    <div class="space-y-6">
+                        <div
+                            class="flex items-center justify-between p-4 bg-surface-low rounded-xl border border-border-subtle">
+                            <span class="font-bold">Loyal Customers</span>
+                            <span class="text-green-600 font-bold">42%</span>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-4 bg-surface-low rounded-xl border border-border-subtle">
+                            <span class="font-bold">Discount Seekers</span>
+                            <span class="text-orange-600 font-bold">18%</span>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-4 bg-surface-low rounded-xl border border-border-subtle">
+                            <span class="font-bold">Weekend Buyers</span>
+                            <span class="text-blue-600 font-bold">25%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Proven Use Cases & Portfolio -->
+    <section id="case-studies" class="py-24 px-6 bg-gray-50">
+        <div class="max-w-container-max mx-auto">
+            <h2 class="text-4xl font-bold font-geist mb-16 text-center">Proven Impact & Success Stories</h2>
+
+            <div class="space-y-12">
+                <!-- Case 1 -->
+                <div
+                    class="bg-white rounded-3xl border border-border-subtle overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
+                    <div class="grid lg:grid-cols-2">
+                        <div class="p-12">
+                            <div class="text-deep-crimson font-bold uppercase tracking-widest text-xs mb-4">Inbound
+                                Customer Service</div>
+                            <h3 class="text-3xl font-bold mb-6">HERA for Bio Medika</h3>
+                            <p class="text-text-muted mb-8 leading-relaxed">Unlocked 24/7 automated support and instant
+                                answers for hundreds of test types across all branches.</p>
+
+                            <button onclick="toggleDetails('bio-medika')"
+                                class="text-deep-crimson font-bold flex items-center gap-2 hover:gap-4 transition-all">
+                                See Full Solution & Metrics
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </button>
+
+                            <div id="bio-medika" class="details-content mt-8 border-t border-border-subtle pt-8">
+                                <div class="grid grid-cols-3 gap-6 mb-8">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-deep-crimson">90%</div>
+                                        <div class="text-[10px] uppercase font-bold text-text-muted">First Resolution
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-deep-crimson">99%</div>
+                                        <div class="text-[10px] uppercase font-bold text-text-muted">Scalability</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-deep-crimson">2x</div>
+                                        <div class="text-[10px] uppercase font-bold text-text-muted">CSAT Increase</div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-text-muted italic">"CS operations became easier to scale without
+                                    heavy training, while customers got faster, accurate service."</p>
+                            </div>
+                        </div>
+                        <div class="bg-surface-low flex items-center justify-center p-12">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800"
+                                alt="Healthcare AI" class="rounded-2xl shadow-lg grayscale">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 2 -->
+                <div
+                    class="bg-white rounded-3xl border border-border-subtle overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
+                    <div class="grid lg:grid-cols-2">
+                        <div class="order-2 lg:order-1 bg-surface-low flex items-center justify-center p-12">
+                            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800"
+                                alt="Citroen Automotive" class="rounded-2xl shadow-lg">
+                        </div>
+                        <div class="order-1 lg:order-2 p-12">
+                            <div class="text-deep-crimson font-bold uppercase tracking-widest text-xs mb-4">Outbound
+                                Sales AI</div>
+                            <h3 class="text-3xl font-bold mb-6">HERA for Citroën Indonesia</h3>
+                            <p class="text-text-muted mb-8 leading-relaxed">Automatically qualifying 7,000+ leads in
+                                real-time, engaging qualified prospects directly as an AI sales agent.</p>
+
+                            <button onclick="toggleDetails('citroen')"
+                                class="text-deep-crimson font-bold flex items-center gap-2 hover:gap-4 transition-all">
+                                See Full Solution & Metrics
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </button>
+
+                            <div id="citroen" class="details-content mt-8 border-t border-border-subtle pt-8">
+                                <div class="grid grid-cols-3 gap-6 mb-8">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-deep-crimson">85%</div>
+                                        <div class="text-[10px] uppercase font-bold text-text-muted">Faster Response
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-deep-crimson">2x</div>
+                                        <div class="text-[10px] uppercase font-bold text-text-muted">Lead Capacity</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-deep-crimson">10%</div>
+                                        <div class="text-[10px] uppercase font-bold text-text-muted">AI Conversion</div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-text-muted italic">"Unlocks a scalable, high-efficiency sales
+                                    model where the team focuses only on closing deals."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio Showcase -->
+            <div class="mt-24">
+                <h3 class="text-2xl font-bold mb-12 text-center uppercase tracking-widest text-text-muted">MarTech
+                    Portfolio</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div
+                        class="bg-white p-8 rounded-2xl border border-border-subtle hover:border-deep-crimson transition-colors">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h4 class="text-xl font-bold">Sania Cooking Oil</h4>
+                                <p class="text-sm text-text-muted">Social Media & KOL Management</p>
+                            </div>
+                            <div class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-bold">+50K
+                                Followers</div>
+                        </div>
+                        <p class="text-sm text-text-muted mb-4">7.71% Engagement Rate vs 1.06% Industry Average.</p>
+                        <div class="text-xs font-bold text-deep-crimson uppercase tracking-widest">Achieved 49.9M Reach
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white p-8 rounded-2xl border border-border-subtle hover:border-deep-crimson transition-colors">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h4 class="text-xl font-bold">Elite Springbed</h4>
+                                <p class="text-sm text-text-muted">Growth & Online Sales Strategy</p>
+                            </div>
+                            <div class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-bold">40-60%
+                                Sales Growth</div>
+                        </div>
+                        <p class="text-sm text-text-muted mb-4">Strengthened premium brand image while maximizing
+                            digital growth.</p>
+                        <div class="text-xs font-bold text-deep-crimson uppercase tracking-widest">13K+ New Followers
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer & Final CTA -->
+    <section id="contact" class="py-24 px-6 text-center bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-6xl font-bold font-geist mb-8">Ready to evolve from simply having data to truly
+                Data-to-Customer?</h2>
+            <a href="#"
+                class="inline-block bg-deep-crimson text-white px-12 py-5 rounded-md font-bold text-xl hover:opacity-90 transition-all shadow-2xl shadow-red-200 active:scale-95 mb-16">
+                Connect with Our Experts
+            </a>
+
+            <div
+                class="border-t border-border-subtle pt-12 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex items-center gap-4">
+                    <div class="text-3xl font-bold text-deep-crimson font-geist">ngf.</div>
+                    <div class="text-sm text-text-muted">© 2026 NGF Group | Frontier Technology. <br
+                            class="md:hidden" />All rights reserved.</div>
+                </div>
+                <div class="flex gap-8 text-sm font-bold uppercase tracking-widest text-text-muted">
+                    <a href="#" class="hover:text-deep-crimson">LinkedIn</a>
+                    <a href="#" class="hover:text-deep-crimson">Privacy</a>
+                    <a href="#" class="hover:text-deep-crimson">Terms</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleDetails(id) {
+            const content = document.getElementById(id);
+            const button = content.previousElementSibling;
+            const icon = button.querySelector('.material-symbols-outlined');
+
+            content.classList.toggle('open');
+
+            if (content.classList.contains('open')) {
+                icon.textContent = 'expand_less';
+                button.classList.add('mb-4');
+            } else {
+                icon.textContent = 'expand_more';
+                button.classList.remove('mb-4');
+            }
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const icon = document.getElementById('dark-mode-icon');
+            if (document.documentElement.classList.contains('dark')) {
+                icon.textContent = 'dark_mode';
+            } else {
+                icon.textContent = 'light_mode';
+            }
+        }
+
+    </script>
+
+    <script
+        src="https://heracx.s3.ap-southeast-3.amazonaws.com/widget.min.js?token=U2FsdGVkX18me2-MXMLvstQ2t4DgKiics0tFUUTFlyzM3skqsJ_1cn4Hjf7PPgu8cg7ZiVqKxyCWRCqrVgQQdbOs-xO70UJFWtNN-fSLHXGhLYmmgdXoGQvjy6U9LVLlsBSBo4QEmiHGl5Lr6GpV_g"></script>
+
+    <!-- Embed code with API URL -->
+    <script
+        src="https://heracx.s3.ap-southeast-3.amazonaws.com/widget.min.js?token=U2FsdGVkX18me2-MXMLvstQ2t4DgKiics0tFUUTFlyzM3skqsJ_1cn4Hjf7PPgu8cg7ZiVqKxyCWRCqrVgQQdbOs-xO70UJFWtNN-fSLHXGhLYmmgdXoGQvjy6U9LVLlsBSBo4QEmiHGl5Lr6GpV_g"></script>
+
+</body>
+
+</html>
